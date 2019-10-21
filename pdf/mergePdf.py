@@ -2,6 +2,7 @@ import PyPDF2
 from pathlib import Path
 import subprocess
 from minimizePdf import minimizePdf
+from util import isMatchExtensions
 
 def mergePdf(pdf_path_strs, dst_path_str):
     """
@@ -61,8 +62,18 @@ def inputFiles():
         list<str>.
     """
     while (1):
-        print("put in pdf file or put [q] key: ")
+        print("put in pdf file or dir or put [q] key: ")
         file_path_strs = input().split()
+
+        # 入力されたのがdirの場合
+        dir_path = Path(file_path_strs[0])
+        file_path_strs = [] # 初期化
+        if (dir_path.suffix == ""):
+            files = dir_path.glob("*")
+            for file in files:
+                if(isMatchExtensions(file, [".pdf"])):
+                    file_path_strs.append(str(file))
+
         while (1):
             print("Is it OK, yo want to merge file? [y/n]:")
             for file_path_str in file_path_strs:
