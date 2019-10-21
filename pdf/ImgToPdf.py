@@ -1,35 +1,44 @@
-import os
 import img2pdf
 from pathlib import Path
 from PIL import Image
 import shutil
+from util import isMatchExtensions
 
-#単処理
-def ImageToPdf(inputpath):
-    while(1):
-        print("is resize?:[y/n]")
-        ans = input()
-        if (ans == 'y' or ans == 'n'):
-            is_resize = ans == 'y'
-            break
-    if (is_resize):
-        imagepath = resizeImg(inputpath)
-    else:
-        imagepath = inputpath
-    outputpath = Path(str(inputpath) + '/' + inputpath.name + ".pdf")
-    lists = sorted(list(imagepath.glob("*")))#単フォルダ内を検索
+def isImgPath(check_path):
+    """
+    -- input --------------
+    check_path :
+        pathlib.path.
+    -- output --------------
+    void
+    """
+    return isMatchExtensions(check_path, [".jpg", ".png", ".JPG", ".PNG"])
+
+#画像からPDFにする
+def ImageToPdf(inputpath, outputpath): 
+    """
+    -- input --------------
+    inputpath :
+        pathlib.path.
+    -- output --------------
+    outputpath :
+        pathlib.path.
+    """
+
+    lists = sorted(list(inputpath.glob("*")))#単フォルダ内を検索
+    img_list = [str(i) for i in lists if isImgPath(i)]
+    if (img_list == []):
+        return 0
+
     #pdfを作成
     with open(outputpath, "wb") as f:
         #jpg,pngファイルだけpdfに結合
         #Pathlib.WindowsPath()をstring型に変換しないとエラー
-        f.write(img2pdf.convert([str(i) for i in lists if i.match("*.jpg") or i.match("*.png")]))
+        f.write(img2pdf.convert(img_list))
     print(outputpath.name + " :Done")
     size_mb = round(float(outputpath.stat().st_size) / (2**20), 1)
     print("file size: " + str(size_mb) + "MB")
-
-    if (is_resize):
-        shutil.rmtree(imagepath)
-        print("remove resize file")
+    return 1
 
 def resizeImg(imagepath):
     # カラー用のリサイズをするか否か
@@ -45,9 +54,9 @@ def resizeImg(imagepath):
             size = int(size_str)
             break
 
-    PL = [p for p in Path(imagepath).glob('*') if p.match("*.jpg") or p.match("*.png")]
-    # for i, p in enumerate(sorted(PL)):
-    #     print(p)
+    # PL = [p for p in Path(imagepath).glob('*') if p.match("*./jpg/i") or p.match("*./png/i")]
+    PL = [p for p in Path(imagepath).glob('*') if isImgPath(p)]
+
     half_img_path = Path(str(imagepath) + '/resize')
     half_img_path.mkdir(exist_ok=True)
     print("make file : " + str(half_img_path))
@@ -67,17 +76,35 @@ def resizeImg(imagepath):
 
 #複数フォルダをループ処理する
 def main():
-    #作業フォルダ
+    #作業フォルダを入力させる
     print("put in your work folder path: ")
     base_path = Path(input())
 
-    if (base_path.exists()):
-        # リサイズする
-        ImageToPdf(base_path)
-
-    else:
+    if (not base_path.exists()):
         print("not found img file")
         return
+
+    while(1):
+        print("is resize?:[y/n]")
+        ans = input()
+        if (ans == 'y' or ans == 'n'):
+            is_resize = ans == 'y'
+            break
+    if (is_resize):
+        imagepath = resizeImg(base_path)
+    else:
+        imagepath = base_path
+
+    outputpath = Path(str(base_path) + '/' + base_path.name + ".pdf")
+    result = ImageToPdf(imagepath, outputpath)
+
+    if (result == 0):
+        print("Not Found Image!")
+        return
+    
+    if (is_resize):
+        shutil.rmtree(imagepath)
+        print("remove resize file")
 
 if __name__ == "__main__":
     main()
