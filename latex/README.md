@@ -11,7 +11,10 @@
 ### VSCodeで$\LaTeX$をPDFにして参照する
 1. `⌘`(Control)+`Shift`+`P`)
 2. `LaTeX Workshop: Build with recipe`を選択
-3. `ptex2pdf`を選択(目次と全ページ数を出したいなら, `ptex2pdf*2`を選択)
+3. コンパイル
+   - 目次も, bibファイルもないなら`ptex2pdf`を選択
+   - 目次あり, bibファイルなしなら, `ptex2pdf*2`を選択
+   - 目次あり, bibファイルありなら, `toolchain`を選択
 
 # 参考
 ## VSCodeでLaTeXについて
