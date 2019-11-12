@@ -21,10 +21,13 @@
 - [[LaTeX]mac OS(Mojave)でのVSCode環境構築備忘録 | Qiita](https://qiita.com/uoyuki/items/c172235a0caf2f637ea4)
   - 参照: 2019/11/13
 
+- [Ikuyadeu/vscode-latex.md | GitHub](https://gist.github.com/Ikuyadeu/204d06fffd912f441b383eb02463e29b)
+  - 参照: 2019/11/13
+
 ## Beamerについて
 - [LaTeX + Beamer でスライドを作る | 何かを書き留める何か](https://xaro.hatenablog.jp/entry/2013/09/18/020615)
   - 参照: 2019/11/13
-<<<<<<< HEAD
+
 - [Beamerスライドに参考文献リストを載せる | Qiita](https://qiita.com/birdwatcher/items/0dd3fe2e8ff5685cc3f7)
   - 参照: 2019/11/13
 
