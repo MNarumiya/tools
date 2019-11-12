@@ -1,0 +1,60 @@
+\documentclass[11pt,dvipdfmx]{jarticle}
+
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\textwidth 16cm
+\textheight 24cm
+\topmargin -2.0cm
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{color}
+\usepackage{fancybox}
+\usepackage{ascmac}
+\usepackage{amsthm}
+\usepackage{url} %%% パッケージ url を読み込む
+\usepackage{cases}
+\usepackage{bm}
+\usepackage{here}
+\usepackage{listings}
+% \usepackage{listings,jlisting} %日本語のコメントアウトをする場合jlistingが必要
+%ここからソースコードの表示に関する設定
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\smallitshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex
+}
+%ここまでソースコードの表示に関する設定
+
+\begin{document}
+
+\begin{center}
+\vspace*{6mm}
+{\Large タイトル}\\
+\vspace*{4mm}
+学籍番号 **-*******\\
+氏名 **** ****
+\end{center}
+
+\tableofcontents
+% \newpage
+
+\section{hoge}
+  \subsection{hogehoge}
+    hogehogehoge
+
+\section{fuga}
+
+\end{document}

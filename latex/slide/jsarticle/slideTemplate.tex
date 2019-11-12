@@ -1,0 +1,36 @@
+\documentclass[a4j,papersize,disablejfam,slide,36pt]{jsarticle}
+\usepackage{graphicx,xcolor}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0.0pt}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage{}/{}\pageref{LastPage}}
+\rfoot{}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage{lxfonts}
+\usepackage{bm}
+\begin{document}
+\title{LaTeX + jsarticle + slide でスライドを作る}
+\author{Xaro}
+\date{\today}
+\maketitle
+\section{数式の例}
+\begin{equation}
+\left( \int_{0}^{\infty} \frac{\sin x}{\sqrt{x}} dx \right)^{2} = \frac{\pi}{2}.
+\end{equation}
+
+\newpage
+\section{猿！}
+\begin{itemize}
+\item 見ざる
+\item 聞かざる
+\item 言わざる
+\end{itemize}
+\end{document}
